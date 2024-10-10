@@ -9,13 +9,13 @@
     "qrcode_source": "Qrcode source",
     "qrcode_source-tips": "select the QR code device, default linux",
     "qrcode_sources": {
+      "alipaymini": "Alipaymini",
       "android": "Android",
       "ios": "Ios",
-      "linux": "Linux",
-      "mac": "Mac",
+      "qandroid": "Qandroid",
       "tv": "Tv",
       "web": "Web",
-      "windows": "Windows"
+      "wechatmini": "Wechatmini"
     },
     "qrcode_token": "Qrcode token",
     "qrcode_token-tips": "one of QR code token and cookie required",
@@ -31,13 +31,13 @@
     "qrcode_source": "Qrcode source",
     "qrcode_source-tips": "select the QR code device, default linux",
     "qrcode_sources": {
+      "alipaymini": "Alipaymini",
       "android": "Android",
       "ios": "Ios",
-      "linux": "Linux",
-      "mac": "Mac",
+      "qandroid": "Qandroid",
       "tv": "Tv",
       "web": "Web",
-      "windows": "Windows"
+      "wechatmini": "Wechatmini"
     },
     "qrcode_token": "Qrcode token",
     "qrcode_token-tips": "one of QR code token and cookie required",
@@ -48,17 +48,6 @@
     "share_code-tips": "share code of 115 share link"
   },
   "123Pan": {
-    "order_by": "Order by",
-    "order_bys": {
-      "file_name": "File name",
-      "size": "Size",
-      "update_at": "Update at"
-    },
-    "order_direction": "Order direction",
-    "order_directions": {
-      "asc": "Asc",
-      "desc": "Desc"
-    },
     "password": "Password",
     "root_folder_id": "Root folder id",
     "username": "Username"
@@ -73,17 +62,6 @@
   },
   "123PanShare": {
     "accesstoken": "Accesstoken",
-    "order_by": "Order by",
-    "order_bys": {
-      "file_name": "File name",
-      "size": "Size",
-      "update_at": "Update at"
-    },
-    "order_direction": "Order direction",
-    "order_directions": {
-      "asc": "Asc",
-      "desc": "Desc"
-    },
     "root_folder_id": "Root folder id",
     "sharekey": "Sharekey",
     "sharepassword": "Sharepassword"
@@ -419,6 +397,12 @@
     "gateway": "Gateway",
     "root_folder_path": "Root folder path"
   },
+  "KodBox": {
+    "address": "Address",
+    "password": "Password",
+    "root_folder_path": "Root folder path",
+    "username": "Username"
+  },
   "Lanzou": {
     "account": "Account",
     "baseUrl": "BaseUrl",
@@ -437,7 +421,8 @@
       "account": "Account",
       "cookie": "Cookie",
       "url": "Url"
-    }
+    },
+    "user_agent": "User agent"
   },
   "Lark": {
     "app_id": "App id",
@@ -450,6 +435,15 @@
     "tenant_url_prefix": "Tenant url prefix",
     "tenant_url_prefix-tips": "tenant url prefix"
   },
+  "LenovoNasShare": {
+    "host": "Host",
+    "host-tips": "You can change it to your local area network",
+    "root_folder_path": "Root folder path",
+    "share_id": "Share id",
+    "share_id-tips": "The part after the last / in the shared link",
+    "share_pwd": "Share pwd",
+    "share_pwd-tips": "The password of the shared link"
+  },
   "Local": {
     "mkdir_perm": "Mkdir perm",
     "recycle_bin_path": "Recycle bin path",
@@ -458,6 +452,8 @@
     "show_hidden": "Show hidden",
     "show_hidden-tips": "show hidden directories and files",
     "thumb_cache_folder": "Thumb cache folder",
+    "thumb_concurrency": "Thumb concurrency",
+    "thumb_concurrency-tips": "Number of concurrent thumbnail generation goroutines. This controls how many thumbnails can be generated in parallel.",
     "thumbnail": "Thumbnail",
     "thumbnail-tips": "enable thumbnail"
   },
@@ -527,6 +523,11 @@
     "root_folder_path": "Root folder path",
     "site_id": "Site id"
   },
+  "Onedrive Sharelink": {
+    "password": "Password",
+    "root_folder_path": "Root folder path",
+    "url": "Url"
+  },
   "OnedriveAPP": {
     "chunk_size": "Chunk size",
     "client_id": "Client id",
@@ -545,21 +546,41 @@
     "tenant_id": "Tenant id"
   },
   "PikPak": {
-    "client_id": "Client id",
-    "client_secret": "Client secret",
+    "captcha_token": "Captcha token",
+    "custom_low_latency_address": "Custom low latency address",
+    "device_id": "Device id",
     "disable_media_link": "Disable media link",
     "password": "Password",
+    "platform": "Platform",
+    "platforms": {
+      "android": "Android",
+      "pc": "Pc",
+      "web": "Web"
+    },
+    "refresh_token": "Refresh token",
+    "refresh_token_method": "Refresh token method",
+    "refresh_token_methods": {
+      "http": "Http",
+      "oauth2": "Oauth2"
+    },
     "root_folder_id": "Root folder id",
+    "use_low_latency_address": "Use low latency address",
     "username": "Username"
   },
   "PikPakShare": {
-    "client_id": "Client id",
-    "client_secret": "Client secret",
-    "password": "Password",
+    "custom_low_latency_address": "Custom low latency address",
+    "device_id": "Device id",
+    "platform": "Platform",
+    "platforms": {
+      "android": "Android",
+      "pc": "Pc",
+      "web": "Web"
+    },
     "root_folder_id": "Root folder id",
     "share_id": "Share id",
     "share_pwd": "Share pwd",
-    "username": "Username"
+    "use_low_latency_address": "Use low latency address",
+    "use_transcoding_address": "Use transcoding address"
   },
   "Quark": {
     "cookie": "Cookie",
@@ -575,6 +596,13 @@
       "asc": "Asc",
       "desc": "Desc"
     },
+    "root_folder_id": "Root folder id"
+  },
+  "QuarkTV": {
+    "device_id": "Device id",
+    "query_token": "Query token",
+    "query_token-tips": "don't edit'",
+    "refresh_token": "Refresh token",
     "root_folder_id": "Root folder id"
   },
   "Quqi": {
@@ -832,6 +860,13 @@
     },
     "root_folder_id": "Root folder id"
   },
+  "UCTV": {
+    "device_id": "Device id",
+    "query_token": "Query token",
+    "query_token-tips": "don't edit'",
+    "refresh_token": "Refresh token",
+    "root_folder_id": "Root folder id"
+  },
   "USS": {
     "anti_theft_chain_token": "Anti theft chain token",
     "bucket": "Bucket",
@@ -969,8 +1004,10 @@
     "HalalCloud": {},
     "ILanZou": {},
     "IPFS API": {},
+    "KodBox": {},
     "Lanzou": {},
     "Lark": {},
+    "LenovoNasShare": {},
     "Local": {},
     "MediaTrack": {},
     "Mega_nz": {},
@@ -979,10 +1016,12 @@
     },
     "NeteaseMusic": {},
     "Onedrive": {},
+    "Onedrive Sharelink": {},
     "OnedriveAPP": {},
     "PikPak": {},
     "PikPakShare": {},
     "Quark": {},
+    "QuarkTV": {},
     "Quqi": {},
     "S3": {},
     "SFTP": {},
@@ -998,6 +1037,7 @@
     "ThunderXExpert": {},
     "Trainbit": {},
     "UC": {},
+    "UCTV": {},
     "USS": {},
     "UrlTree": {},
     "VTencent": {},
@@ -1037,18 +1077,22 @@
     "HalalCloud": "HalalCloud",
     "ILanZou": "ILanZou",
     "IPFS API": "IPFS API",
+    "KodBox": "KodBox",
     "Lanzou": "Lanzou",
     "Lark": "Lark",
+    "LenovoNasShare": "LenovoNasShare",
     "Local": "Local",
     "MediaTrack": "MediaTrack",
     "Mega_nz": "Mega nz",
     "MoPan": "MoPan",
     "NeteaseMusic": "NeteaseMusic",
     "Onedrive": "Onedrive",
+    "Onedrive Sharelink": "Onedrive Sharelink",
     "OnedriveAPP": "OnedriveAPP",
     "PikPak": "PikPak",
     "PikPakShare": "PikPakShare",
     "Quark": "Quark",
+    "QuarkTV": "QuarkTV",
     "Quqi": "Quqi",
     "S3": "S3",
     "SFTP": "SFTP",
@@ -1064,6 +1108,7 @@
     "ThunderXExpert": "ThunderXExpert",
     "Trainbit": "Trainbit",
     "UC": "UC",
+    "UCTV": "UCTV",
     "USS": "USS",
     "UrlTree": "UrlTree",
     "VTencent": "VTencent",
