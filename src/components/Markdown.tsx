@@ -3,8 +3,6 @@ import { hljs } from "./highlight.js"
 import SolidMarkdown from "solid-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeRaw from "rehype-raw"
-import reMarkMath from "remark-math"
-import rehypeKatex from "rehype-katex"
 import "./markdown.css"
 import { For, Show, createEffect, createMemo, createSignal, on } from "solid-js"
 import { clsx } from "clsx"
@@ -158,8 +156,15 @@ const insertKatexCSS = once(() => {
   const link = document.createElement("link")
   link.rel = "stylesheet"
   link.href =
-    "https://registry.npmmirror.com/katex/0.16.8/files/dist/katex.min.css"
+    "https://registry.npmmirror.com/katex/0.16.11/files/dist/katex.min.css"
   document.head.appendChild(link)
+})
+
+const insertMermaidJS = once(() => {
+  const script = document.createElement("script")
+  script.src =
+    "https://registry.npmmirror.com/mermaid/11/files/dist/mermaid.min.js"
+  document.body.appendChild(script)
 })
 
 export function Markdown(props: {
@@ -184,6 +189,10 @@ export function Markdown(props: {
     content = content.replace(/!\[.*?\]\((.*?)\)/g, (match) => {
       const name = match.match(/!\[(.*?)\]\(.*?\)/)![1]
       let url = match.match(/!\[.*?\]\((.*?)\)/)![1]
+      // 检查是否为 base64 编码的图片
+      if (url.startsWith("data:image/")) {
+        return match // 如果是 base64 编码的图片，直接返回原标签
+      }
       if (
         url.startsWith("http://") ||
         url.startsWith("https://") ||
@@ -205,13 +214,31 @@ export function Markdown(props: {
     })
     return content
   })
+  const [remarkPlugins, setRemarkPlugins] = createSignal<Function[]>([
+    remarkGfm,
+  ])
+  const [rehypePlugins, setRehypePlugins] = createSignal<Function[]>([
+    rehypeRaw,
+  ])
   createEffect(
-    on(md, () => {
+    on(md, async () => {
       setShow(false)
-      insertKatexCSS()
+      // lazy for math rendering
+      if (/\$\$[\s\S]+?\$\$|\$[^$\n]+?\$/.test(md())) {
+        const { default: reMarkMath } = await import("remark-math")
+        const { default: rehypeKatex } = await import("rehype-katex")
+        insertKatexCSS()
+        setRemarkPlugins([...remarkPlugins(), reMarkMath])
+        setRehypePlugins([...rehypePlugins(), rehypeKatex])
+      }
+      insertMermaidJS()
       setTimeout(() => {
         setShow(true)
         hljs.highlightAll()
+        window.mermaid &&
+          window.mermaid.run({
+            querySelector: ".language-mermaid",
+          })
         window.onMDRender && window.onMDRender()
       })
     }),
@@ -227,13 +254,17 @@ export function Markdown(props: {
       <Show when={show()}>
         <SolidMarkdown
           class={clsx("markdown-body", props.class)}
-          remarkPlugins={[remarkGfm, reMarkMath]}
-          rehypePlugins={[rehypeRaw, rehypeKatex]}
+          remarkPlugins={remarkPlugins()}
+          rehypePlugins={rehypePlugins()}
           children={md()}
         />
       </Show>
       <Show when={!isString}>
-        <EncodingSelect encoding={encoding()} setEncoding={setEncoding} />
+        <EncodingSelect
+          encoding={encoding()}
+          setEncoding={setEncoding}
+          referenceText={props.children}
+        />
       </Show>
       <MarkdownToc disabled={!props.toc} markdownRef={markdownRef()!} />
     </Box>
